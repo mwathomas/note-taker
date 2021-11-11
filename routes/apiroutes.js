@@ -1,12 +1,12 @@
 const util = require("util");
 const router = require("express").Router();
 const fs = require("fs");
+const notes = require("../db/db.json");
 
 // GET Route for retrieving notes
 router.get("/api/notes", (req, res) => {
   console.info(`${req.method} request received for tips`);
-  fs.readFile("./db/db.json", utf8);
-  res.json(JSON.parse(data));
+  res.status(200).json(notes);
 });
 
 // POST Route for adding notes
