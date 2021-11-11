@@ -8,8 +8,8 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static(__dirname));
-app.use(apiRoutes);
+app.use(express.static("public"));
+app.use("/api", apiRoutes);
 
 //`GET /notes` should return the `notes.html` file.
 app.get("/notes", (req, res) =>
