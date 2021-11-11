@@ -35,9 +35,7 @@ const readAndAppend = (content, file) => {
 // GET Route for retrieving notes
 router.get("/api/notes", (req, res) => {
   console.info(`${req.method} request received for tips`);
-  readFromFile("../Develop/db/db.json").then((data) =>
-    res.json(JSON.parse(data))
-  );
+  readFromFile("./db/db.json").then((data) => res.json(JSON.parse(data)));
 });
 
 // POST Route for adding notes
@@ -52,7 +50,7 @@ router.post("/api/notes", (req, res) => {
       text,
     };
 
-    readAndAppend(newNote, "../db/db.json");
+    readAndAppend(newNote, "./db/db.json");
     res.json(`Tip added successfully 🚀`);
   } else {
     res.error("Error in adding tip");

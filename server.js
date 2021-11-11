@@ -1,7 +1,7 @@
 const express = require("express");
 const path = require("path");
 const fs = require("fs");
-const apiRoutes = require("../Develop/routes/apiroutes");
+const apiRoutes = require("./routes/apiroutes");
 
 const PORT = process.env.PORT || 3001;
 
@@ -13,12 +13,12 @@ app.use(apiRoutes);
 
 //`GET /notes` should return the `notes.html` file.
 app.get("/notes", (req, res) =>
-  res.sendFile(path.join(__dirname, "../Develop/public/notes.html"))
+  res.sendFile(path.join(__dirname, "./public/notes.html"))
 );
 
 // `GET *` should return the `index.html` file.
 app.get("/*", (req, res) =>
-  res.sendFile(path.join(__dirname, "../Develop/public/index.html"))
+  res.sendFile(path.join(__dirname, "./public/index.html"))
 );
 
 app.listen(PORT, () =>
