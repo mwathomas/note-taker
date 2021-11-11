@@ -40,24 +40,22 @@ router.get("/api/notes", (req, res) => {
   );
 });
 
-// router.post("/api/notes", (req, res) => {
-//   console.info(`${req.method} request received to add a tip`);
+router.post("/api/notes", (req, res) => {
+  console.info(`${req.method} request received to add a tip`);
 
-//   const { username, topic, tip } = req.body;
+  const { title, text } = req.body;
 
-//   if (req.body) {
-//     const newTip = {
-//       username,
-//       tip,
-//       topic,
-//       tip_id: uuid(),
-//     };
+  if (req.body) {
+    const newNote = {
+      title,
+      text,
+    };
 
-//     readAndAppend(newTip, "../Develop/db/db.json");
-//     res.json(`Tip added successfully 🚀`);
-//   } else {
-//     res.error("Error in adding tip");
-//   }
-// });
+    readAndAppend(newNote, "../Develop/db/db.json");
+    res.json(`Tip added successfully 🚀`);
+  } else {
+    res.error("Error in adding tip");
+  }
+});
 
 module.exports = router;
