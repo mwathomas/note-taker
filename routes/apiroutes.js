@@ -10,22 +10,37 @@ router.get("/api/notes", (req, res) => {
 });
 
 // POST Route for adding notes
-// router.post("/api/notes", (req, res) => {
-//   console.info(`${req.method} request received to add a tip`);
+router.post("/api/notes", (req, res) => {
+  // Log that a POST request was received
+  console.info(`${req.method} request received to add a tip`);
 
-//   const { title, text } = req.body;
+  const { title, text } = req.body;
 
-//   if (req.body) {
-//     const newNote = {
-//       title,
-//       text,
-//     };
+  if (req.body) {
+    const newNote = {
+      title,
+      text,
+    };
+    notes.push(newNote);
+    const final = JSON.stringify(notes);
 
-//     readAndAppend(newNote, "./db/db.json");
-//     res.json(`Tip added successfully 🚀`);
-//   } else {
-//     res.error("Error in adding tip");
-//   }
-// });
+    // Write the string to a file
+    fs.writeFile(`./db/db.json`, final, (err) =>
+      err
+        ? console.error(err)
+        : console.log(`Note has been written to JSON file`)
+    );
+
+    const response = {
+      status: "success",
+      body: newNote,
+    };
+
+    console.log(response);
+    res.status(201).json(response);
+  } else {
+    res.status(500).json("Error in adding note");
+  }
+});
 
 module.exports = router;
