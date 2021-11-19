@@ -2,6 +2,7 @@ const util = require("util");
 const router = require("express").Router();
 const fs = require("fs");
 const notes = require("../db/db.json");
+const { v4: uuidv4 } = require("uuid");
 
 // GET Route for retrieving notes
 router.get("/api/notes", (req, res) => {
@@ -14,12 +15,13 @@ router.post("/api/notes", (req, res) => {
   // Log that a POST request was received
   console.info(`${req.method} request received to add a tip`);
 
-  const { title, text } = req.body;
+  const { title, text, id } = req.body;
 
   if (req.body) {
     const newNote = {
       title,
       text,
+      id: uuidv4(),
     };
     notes.push(newNote);
     const final = JSON.stringify(notes);
