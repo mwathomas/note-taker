@@ -22,7 +22,7 @@ As a user, it is deployed on a heroku site. As a developer, you will need the db
 
 This project is used for keeping trak of to do's or lists. Future development would include a delete function.
 
-![Final Output] (public/assets/finalpage.jpg)
+![Final Output](/public/assets/finalpage.jpg)
 
 [a link] https://pacific-refuge-97758.herokuapp.com/
 
